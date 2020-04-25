@@ -60,7 +60,9 @@ import_mhealth_csv <- function(filepath) {
     return(class(df[1, i]))
   })
   factor_cols <- which(col_classes == "factor")
-  df[, factor_cols] <- as.character(df[, factor_cols])
+  if (length(factor_cols) > 0) {
+    df[, factor_cols] <- as.character(df[, factor_cols])
+  }
 
   # enhance column headers
   colnames(df)[1:length(colheaders)] <- colheaders
@@ -363,6 +365,7 @@ import_actigraph_csv_chunked <- function(filepath,
                                          header = TRUE, chunk_samples=180000) {
   chunk_size <- chunk_samples
   actigraph_meta <- import_actigraph_meta(filepath)
+
   if (has_ts) {
     ncols <- 4
     col_types <- c("character", "numeric", "numeric", "numeric")
@@ -522,6 +525,15 @@ import_actigraph_csv_chunked <- function(filepath,
 #'   # Check more
 #'   summary(df)
 #'
+#'   # If set has_ts wrong, you should see a warning
+#'   df = import_actigraph_csv(filepath, has_ts=TRUE)
+#'
+#'   # Check loaded file
+#'   head(df)
+#'
+#'   # Check more
+#'   summary(df)
+#'
 #'   # Restore default options
 #'   options(default_ops)
 import_actigraph_csv <-
@@ -557,6 +569,12 @@ import_actigraph_csv <-
           trim_ws = TRUE,
           col_types = col_types
         )
+    }
+
+    if (has_ts && ncol(dat) == 3) {
+      warning("has_ts = TRUE, but only 3 columns, setting has_ts = FALSE")
+      has_ts = FALSE
+      dat[[1]] = as.numeric(dat[[1]])
     }
 
     if (!has_ts) {

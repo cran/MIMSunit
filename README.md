@@ -3,10 +3,16 @@
 
 # MIMS-unit algorithm
 
-![Pkgdown](https://github.com/mHealthGroup/MIMSunit/workflows/Pkgdown/badge.svg?branch=master)
-![.github/workflows/test.yml](https://github.com/mHealthGroup/MIMSunit/workflows/.github/workflows/test.yml/badge.svg)
+<!-- badges: start -->
+
 [![CRAN
 Status](https://www.r-pkg.org/badges/version/MIMSunit)](https://cran.r-project.org/package=MIMSunit)
+[![Pkgdown](https://github.com/mHealthGroup/MIMSunit/workflows/Pkgdown/badge.svg?branch=master)](https://github.com/mHealthGroup/MIMSunit)
+[![.github/workflows/test.yml](https://github.com/mHealthGroup/MIMSunit/workflows/.github/workflows/test.yml/badge.svg)](https://github.com/mHealthGroup/MIMSunit)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/muschellij2/MIMSunit?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/MIMSunit)
+[![](https://cranlogs.r-pkg.org/badges/MIMSunit)](https://cran.r-project.org/package=MIMSunit)
+<!-- badges: end -->
 
 **Please create github
 [issues](https://github.com/mhealthgroup/MIMSunit/issues/) if you have
@@ -43,26 +49,24 @@ Install dependency system packages for `devtools`: `build-essential`,
 
 ## Installation
 
-1.  Stable version on CRAN (bundled or binary)
+### Stable version
 
-*Coming soon…*
-
-2.  Development version (source codes)
-
-<!-- end list -->
-
-  - For Windows users  
-
-<!-- end list -->
+CRAN
 
 ``` r
-install.packages("devtools")
-devtools::install_github("mhealthgroup/MIMSunit", type='win.binary')
+install.packages('MIMSunit')
 ```
 
-  - For mac or Linux users  
+Osler in health
 
-<!-- end list -->
+``` r
+source("https://oslerinhealth.org/oslerLite.R")
+osler_install('MIMSunit')
+```
+
+### Development version
+
+Github
 
 ``` r
 install.packages("devtools")

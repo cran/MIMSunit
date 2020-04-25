@@ -1,9 +1,30 @@
+# MIMSunit 0.9.0
+
+## Bug fixes
+
+* Check column existence before coverting data type in `import_mhealth_csv()`.
+* Quick failure if dynamic_range is not specified.
+* Auto set `has_ts` to `False` when there are only three columns in the input data in `import_actigraph_csv()`.
+
+## Features
+
+* Sort timestamps of input data before computing mims unit values in `custom_mims_unit()`.
+
+## Documentation
+
+* Indicate columns cannot be reordered in the argument description of `extrapolate()` and `mims_unit()`.
+
+## CI
+
+* Add appveyor for non-Github actions testing
+
+
 # MIMSunit 0.8.2
 
 ## Bug fixes
 
 * Make sure codes do not change options.
-* Fix timestamps in `import_actigraph_csv_chunked`.
+* Fix timestamps in `import_actigraph_csv_chunked()`.
 
 # MIMSunit 0.8.1
 
@@ -26,15 +47,15 @@
 
 ## New features
 
-* New import data functions `import_actigraph_csv_chunked` and `import_mhealth_csv_chunked` to support loading large csv files in chunks. See issue [#11](https://github.com/mHealthGroup/MIMSunit/issues/11).
+* New import data functions `import_actigraph_csv_chunked()` and `import_mhealth_csv_chunked()` to support loading large csv files in chunks. See issue [#11](https://github.com/mHealthGroup/MIMSunit/issues/11).
 
 ## Improvement
 
-* Use chunked import functions in `mims_unit_from_files` to support large input files.
+* Use chunked import functions in `mims_unit_from_files()` to support large input files.
 
 ## Bug fixes
 
-* Column naming in `vector_magnitude` and `sum_up` functions.
+* Column naming in `vector_magnitude()` and `sum_up()` functions.
 * Crashing bug in plotting functions.
 * Chances of incorrect parsing of time zone during interpolation and extrapolation.
 
@@ -44,7 +65,7 @@
 
 ## Minor changes
 
-* `show_progress` is discarded in top-level `mims_unit` functions. Use `use_gui_progress` instead.
+* `show_progress` is discarded in top-level `mims_unit()` functions. Use `use_gui_progress` instead.
 
 ## BREAKING CHANGES
 
@@ -55,7 +76,7 @@
 ## Improvement
 
 * Refine vignettes codes and texts.
-* Better progress bar support for `mims_unit` functions. Use `show_progress` to control whether to show progress bar during computation.
+* Better progress bar support for `mims_unit()` functions. Use `show_progress` to control whether to show progress bar during computation.
 
 ## Bug fixes
 
@@ -69,8 +90,8 @@
 ## Breaking changes
 
 * Remove dependency on "mHealthR" package.
-* Add top-level API function `mims_unit_from_files`.
-* Add new plotting function `generate_interactive_plot`.
+* Add top-level API function `mims_unit_from_files()`.
+* Add new plotting function `generate_interactive_plot()`.
 
 # MIMSunit 0.6.2
 
@@ -108,7 +129,7 @@
 
 # MIMSunit 0.5.7
 
-* Refactor functions in `mims_unit.R`.
+* Refactor `mims_unit()`.
 
 ## Breaking changes
 
