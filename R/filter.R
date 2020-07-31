@@ -21,8 +21,8 @@
 #' @family filtering functions
 #' @export
 #' @examples
-#'   # Use first 1000 rows of sample data
-#'   df = sample_raw_accel_data[1:1000,]
+#'   # Use sample data
+#'   df = sample_raw_accel_data
 #'
 #'   # View input
 #'   illustrate_signal(df, plot_maxed_out_line = FALSE)
@@ -41,21 +41,21 @@ remove_average <- function(df, sr, order = 0.5) {
     c((window - 1) / window, -matlab::ones(1, window - 1) / window)
   a <- 1
 
-  col_filter <- plyr::colwise(
-    .fun = function(x, filt, a) {
-      filtered <- signal::filter(filt, a, x)
-      result <- as.numeric(filtered)
-      return(result)
-    },
-    filt = b,
-    a = a
-  )
+  filt_fun = function(x, filt, a) {
+    filtered <- signal::filter(filt, a, x)
+    result <- as.numeric(filtered)
+    return(result)
+  }
+  for (icol in 2:n_cols) {
+    df[[icol]] = filt_fun(
+      df[[icol]],
+      filt = b,
+      a = a)
+  }
+  colnames(df)[2:n_cols] <-
+    paste0("AVERAGEREMOVAL_", colnames(df)[2:n_cols])
 
-  filtered_value <- col_filter(df[2:n_cols])
-  colnames(filtered_value) <-
-    paste0("AVERAGEREMOVAL_", colnames(filtered_value))
-  filtered_value <- cbind(df[1], filtered_value)
-  return(filtered_value)
+  return(df)
 }
 
 #' Apply Bessel lowpass filter to the signal
@@ -82,8 +82,8 @@ remove_average <- function(df, sr, order = 0.5) {
 #' @family filtering functions
 #' @export
 #' @examples
-#'   # Use first 1000 rows of sample data
-#'   df = sample_raw_accel_data[1:1000,]
+#'   # Use sample data
+#'   df = sample_raw_accel_data
 #'
 #'   # View input
 #'   illustrate_signal(df, plot_maxed_out_line = FALSE)
@@ -104,19 +104,20 @@ bessel <- function(df, sr, cutoff_freq, order = 8) {
 
   n_cols <- ncol(df)
 
-  col_filter <- plyr::colwise(
-    .fun = function(x, filt) {
-      filtered <- signal::filter(filt, x)
-      return(as.numeric(filtered))
-    },
-    filt = arma_coeffs
-  )
-  filtered_value <- col_filter(df[2:n_cols])
-  colnames(filtered_value) <-
-    paste0("BESSEL_", colnames(filtered_value))
-  filtered_value <- cbind(df[1], filtered_value)
+  filt_fun = function(x, filt) {
+    filtered <- signal::filter(filt, x)
+    return(as.numeric(filtered))
+  }
+  for (icol in 2:n_cols) {
+    df[[icol]] = filt_fun(
+      df[[icol]],
+      filt = arma_coeffs)
+  }
+  colnames(df)[2:n_cols] <-
+    paste0("BESSEL_", colnames(df)[2:n_cols])
 
-  return(filtered_value)
+
+  return(df)
 }
 
 #' Apply IIR filter to the signal
@@ -128,8 +129,7 @@ bessel <- function(df, sr, cutoff_freq, order = 8) {
 #' filter. See
 #' \href{https://en.wikipedia.org/wiki/Infinite_impulse_response}{wiki} for the
 #' explanation of the filter. The implementations of IIR filters can be found in
-#' \code{\link[signal]{butter}}, \code{\link[signal]{cheby1}},
-#' \code{\link[signal]{cheby2}}, and \code{\link[signal]{ellip}}.
+#' \code{\link[signal]{butter}}, \code{\link[signal]{cheby1}}, and \code{\link[signal]{ellip}}.
 #'
 #' For Chebyshev Type I, Type II and Elliptic filter, the passband ripple is
 #' fixed to be 0.05 dB. For Elliptic filter, the stopband ripple is fixed to be
@@ -151,14 +151,13 @@ bessel <- function(df, sr, cutoff_freq, order = 8) {
 #'   "high" for a high-pass filter, "stop" for a stop-band (band-reject) filter,
 #'   or "pass" for a pass-band filter.
 #' @param filter_type string. IIR filter type, one of "butter" for butterworth
-#'   filter, "chebyI" for Chebyshev Type I filter, "chebyII" for Chebyshev Type
-#'   II filter, or "ellip" for Elliptic filter.
+#'   filter, "chebyI" for Chebyshev Type I filter, or "ellip" for Elliptic filter.
 #' @return dataframe. Filtered signal.
 #' @family filtering functions
 #' @export
 #' @examples
-#'   # Use first 1000 rows of sample data
-#'   df = sample_raw_accel_data[1:1000,]
+#'   # Use sample data
+#'   df = sample_raw_accel_data
 #'
 #'   # View input
 #'   illustrate_signal(df, plot_maxed_out_line = FALSE)
@@ -182,35 +181,35 @@ iir <-
         filter_type,
         butter = signal::butter(order, cutoff_freq / nyquist, type),
         chebyI = signal::cheby1(order, 0.05,
-          W = cutoff_freq / nyquist,
-          type, plane = "z"
+                                W = cutoff_freq / nyquist,
+                                type, plane = "z"
         ),
         chebyII = signal::cheby2(order, 0.05,
-          W = cutoff_freq / nyquist,
-          type, plane = "z"
+                                 W = cutoff_freq / nyquist,
+                                 type, plane = "z"
         ),
         ellip = signal::ellip(order, 0.05,
-          50,
-          W = cutoff_freq / nyquist, type, plane = "z"
+                              50,
+                              W = cutoff_freq / nyquist, type, plane = "z"
         )
       )
 
     n_cols <- ncol(df)
 
-    col_filter <- plyr::colwise(
-      .fun = function(x, filt, a) {
-        filtered <- signal::filter(filt, a, x)
-        result <- as.numeric(filtered)
-        return(result)
-      },
-      filt = coeffs$b,
-      a = coeffs$a
-    )
-    filtered_value <- col_filter(df[2:n_cols])
-    colnames(filtered_value) <-
-      paste0("IIR_", colnames(filtered_value))
-    filtered_value <- cbind(df[1], filtered_value)
-    return(filtered_value)
+    filt_fun = function(x, filt, a) {
+      filtered <- signal::filter(filt, a, x)
+      result <- as.numeric(filtered)
+      return(result)
+    }
+    for (icol in 2:n_cols) {
+      df[[icol]] = filt_fun(
+        df[[icol]],
+        filt = coeffs$b,
+        a = coeffs$a)
+    }
+    colnames(df)[2:n_cols] <-
+      paste0("IIR_", colnames(df)[2:n_cols])
+    return(df)
   }
 
 #' Apply a bandlimited interpolation filter to the signal to change the sampling
@@ -237,8 +236,8 @@ iir <-
 #' @family filtering functions
 #' @export
 #' @examples
-#'   # Use first 1000 rows of sample data
-#'   df = sample_raw_accel_data[1:1000,]
+#'   # Use sample data
+#'   df = sample_raw_accel_data
 #'
 #'   # View input
 #'   illustrate_signal(df, plot_maxed_out_line = FALSE)

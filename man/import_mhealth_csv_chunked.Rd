@@ -39,7 +39,7 @@ list. The list contains two items. The first item is a generator
 
   # Example 1
   # Load chunks every 1000 samples
-  results = import_mhealth_csv_chunked(filepath, chunk_samples=1000)
+  results = import_mhealth_csv_chunked(filepath, chunk_samples=100)
   next_chunk = results[[1]]
   close_connection = results[[2]]
   # Check data as chunks, you can see chunk time is shifting forward at each iteration.

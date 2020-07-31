@@ -2,8 +2,8 @@ Package: MIMSunit
 Type: Package
 Title: Algorithm to Compute Monitor Independent Movement Summary Unit
         (MIMS-Unit)
-Version: 0.9.1
-Date: 2020-05-19
+Version: 0.9.2
+Date: 2020-07-30
 Authors@R: c(person("Qu", "Tang", email = "tang.q@northeastern.edu",
                   role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5415-0205")),
              person("Dinesh", "John", email = "d.john@northeastern.edu",
@@ -23,7 +23,7 @@ Language: en-US
 Depends: R (>= 3.6.0)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 URL: https://mhealthgroup.github.io/MIMSunit/,
         https://github.com/mhealthgroup/MIMSunit/tree/master
 BugReports: https://github.com/mhealthgroup/MIMSunit/issues/
@@ -35,14 +35,14 @@ Imports: caTools (>= 1.17.1.1), dplyr (>= 0.7.7), lubridate (>= 1.7.4),
         (>= 3.2.1)
 Suggests: testthat, pkgdown, gridExtra, remotes
 SystemRequirements: memory (>= 4GB) Ubuntu: build-essential,
-        libcurl4-gnutls-dev, libxml2-dev, libssl-dev Windows: Rtools
+        libxml2-dev, libssl-dev, libcurl4-openssl-dev Windows: Rtools
         (>= 3.5)
 NeedsCompilation: no
-Packaged: 2020-05-20 18:08:09 UTC; tqshe
+Packaged: 2020-07-30 21:55:36 UTC; tqshe
 Author: Qu Tang [aut, cre] (<https://orcid.org/0000-0001-5415-0205>),
   Dinesh John [aut],
   Stephen Intille [aut],
   mHealth Research Group [cph] (https://mhealthgroup.org)
 Maintainer: Qu Tang <tang.q@northeastern.edu>
 Repository: CRAN
-Date/Publication: 2020-05-20 22:30:06 UTC
+Date/Publication: 2020-08-01 00:20:10 UTC
