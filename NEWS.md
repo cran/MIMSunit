@@ -1,3 +1,27 @@
+# MIMSunit 0.10.0
+
+## BREAKING CHANGES
+
+* `import_actigraph_csv()` and `import_actigraph_csv_chunked()` functions no longer support `has_ts` flag. Users should always ensure input data have timestamps in the first column. **Note that for versions `<=0.9.2`, always make sure the input raw accelerometer data includes timestamps in the first column and set `has_ts` to TRUE when using `import_actigraph_csv()` and `import_actigraph_csv_chunked()` functions to avoid a known bug.**
+
+## Bug fixes
+
+* Remove warnings from dplyr > 1.0.0.
+* The first column of the input data.frame does not have to be HEADER_TIME_STAMP. [#29](https://github.com/mHealthGroup/MIMSunit/issues/29).
+
+## Refactor
+
+* Refactor `export_to_actilife()` and `conceptual_diagram` vignette to be compatible with newer versions of `readr` and `plyr` packages.
+
+## Development
+
+* Update development package versions
+
+## Documentation
+
+* Add back man pages to the github development version.
+* Fix invalid urls in any documentations.
+
 # MIMSunit 0.9.2
 
 ## Improvement
@@ -139,7 +163,7 @@
 
 * Add two datasets for experiment results (see [this article](https://mhealthgroup.github.io/MIMSunit/articles/cross_device_consistency.html)).
 * Move MIMSunit R project one level down to a subdirectory to better support git submodules.
-* Add [`MIMSunit-dataset-shaker`](https://github.com/qutang/MIMSunit-dataset-shaker) as submodule.
+* Add [`MIMSunit-dataset-shaker`](https://github.com/mHealthGroup/MIMSunit-dataset-shaker/) as submodule.
 
 # MIMSunit 0.5.10
 
