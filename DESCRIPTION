@@ -2,8 +2,8 @@ Package: MIMSunit
 Type: Package
 Title: Algorithm to Compute Monitor Independent Movement Summary Unit
         (MIMS-Unit)
-Version: 0.10.0
-Date: 2021-04-26
+Version: 0.11.0
+Date: 2021-09-03
 Authors@R: c(person("Qu", "Tang", email = "tang.q@northeastern.edu",
                   role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5415-0205")),
              person("Dinesh", "John", email = "d.john@northeastern.edu",
@@ -38,11 +38,11 @@ SystemRequirements: memory (>= 4GB) Ubuntu: build-essential,
         libxml2-dev, libssl-dev, libcurl4-openssl-dev Windows: Rtools
         (>= 3.5)
 NeedsCompilation: no
-Packaged: 2021-04-28 23:26:14 UTC; qutang
+Packaged: 2021-09-03 18:49:46 UTC; qutang
 Author: Qu Tang [aut, cre] (<https://orcid.org/0000-0001-5415-0205>),
   Dinesh John [aut],
   Stephen Intille [aut],
   mHealth Research Group [cph] (https://www.mhealthgroup.org)
 Maintainer: Qu Tang <tang.q@northeastern.edu>
 Repository: CRAN
-Date/Publication: 2021-04-29 16:30:02 UTC
+Date/Publication: 2021-09-03 21:20:08 UTC

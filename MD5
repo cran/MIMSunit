@@ -1,7 +1,7 @@
-6ba2c30dfcab945f02fbe48998950640 *DESCRIPTION
+7887c07a15cdca114172e002e3393b3d *DESCRIPTION
 77b684451fac6174384b2bef9810780b *LICENSE
 0ffebfeae94ea9bc1addfb17cb7ee37b *NAMESPACE
-0f381c6c8c447d040cd2d4d9dff1588f *NEWS.md
+51b777ab0fd1f9e60a63acfec3a79ddf *NEWS.md
 24a8734b920e0924e9ca779d278145f0 *R/aggregate_over_epoch.R
 25246e7cafe59bb8bb7fb6df22dda86c *R/app.R
 7b2024ea5b92fb1b4c93f2349f465a69 *R/combine_axes.R
@@ -11,9 +11,9 @@ c0db8763b7bd326512abc4f7aef68f4a *R/data.R
 53b7331da221c81a96a27872abe09072 *R/extrapolate_rate.R
 5371b4df7663d526150cb06cfad3c917 *R/filter.R
 435ce482c119d369367013b3e7a230eb *R/helper.R
-bf84348eb4694ce0d771d5ddf021d908 *R/import_data.R
+6402e58cd873df476ab22c677042f748 *R/import_data.R
 02b4b7deee118fcaf9abf80054b18d7b *R/interpolate.R
-11d8423c1e3e3207c9e6d59a48a766d2 *R/mims_unit.R
+6362d3503ef6f8320f4049c94a538a81 *R/mims_unit.R
 c3e3583bded68994c54e37b6da46c176 *R/orientation.R
 8583b4a554089f04777385d4d9146a57 *R/plotting.R
 64c53120ac23ea4ae08974bb3c8225d8 *R/simulate_data.R
@@ -22,12 +22,13 @@ c3e3583bded68994c54e37b6da46c176 *R/orientation.R
 098165a99c3dfe5a6ecbc80113e47ed3 *data/cv_different_algorithms.rda
 e2c109d6e28a490909c1f306203d8ef9 *data/edge_case.rda
 ec441f99d5cf2b94d1600309f1330e09 *data/measurements_different_devices.rda
-fc2ea74495441be3c8baf96ed87dff96 *data/rest_on_table.rda
+bf5e2470ff184ebdd3aaf8f7edafd19b *data/rest_on_table.rda
 36806ce193034af083eb539a9ffca8ea *data/sample_raw_accel_data.rda
 fb85a0f29eaea2a1c4fa480d68f473c7 *inst/CITATION
 d0e549aa3e23883d3b5ede51667bb083 *inst/app/server.R
 1db012535d25fed9575d865e728ae809 *inst/app/ui.R
 4db72e1a0b352102cd2f291f6fee0c79 *inst/extdata/actigraph_count.csv
+8e52414efb31eb5a67d68e63f417496d *inst/extdata/actigraph_no_timestamp.csv
 ea8caf043637987471e5e1fcde917508 *inst/extdata/actigraph_timestamped.csv
 ed6d45f32e0f1cbf9f734d78e13f8633 *inst/extdata/activpal3.csv
 55b99d0a82badd2873c5d843e86671b9 *inst/extdata/enmo.csv
@@ -41,7 +42,7 @@ b072480f8644deef95d0f4c6ac3a445a *man/aggregate_for_orientation.Rd
 77bc69fb4a6832441540303d1b8f8a53 *man/clip_data.Rd
 603482f1202bdecb35d1f65a1cd0acbb *man/compute_orientation.Rd
 5ae1ca49751b1d4eabfcbbc938b2c19b *man/conceptual_diagram_data.Rd
-c09698ed7e183851f388fb4d6e5ff43e *man/custom_mims_unit.Rd
+e3c7685ba04f6d7268e38f631f6d4ce5 *man/custom_mims_unit.Rd
 be1b77d89bc2edffe7035f4961711434 *man/cut_off_signal.Rd
 ea97d0f669cefb376a3b65c3ba457b39 *man/cv_different_algorithms.Rd
 2d974cdb23bf667372c575f89f1aabaa *man/edge_case.Rd
@@ -53,8 +54,8 @@ d8b69c8cfc0b9fccc8d8c878055fa7b4 *man/generate_interactive_plot.Rd
 ad3190a0320ad2b44f2b7a8f6268e6d9 *man/illustrate_extrapolation.Rd
 eded3f5216226c21fa1b74f5e54df115 *man/illustrate_signal.Rd
 bad7d0ee2e8a8a0a0f32d20b858f8871 *man/import_actigraph_count_csv.Rd
-b068bd004c1e4b30882993dfe45cbecd *man/import_actigraph_csv.Rd
-970625b361b8179314edfbcb81961d7d *man/import_actigraph_csv_chunked.Rd
+f97b82657f2cc02346be42852c5a2ba8 *man/import_actigraph_csv.Rd
+dc011ff7efbb4e31a356961923da5f92 *man/import_actigraph_csv_chunked.Rd
 0dd40fc7aeae3b8ef7ce3f894d74bed9 *man/import_actigraph_meta.Rd
 0685bad6e5383b1afcd9a34f25343ce4 *man/import_activpal3_csv.Rd
 f1c64af4cc834d0a5793d3e4bd1f33fe *man/import_enmo_csv.Rd
@@ -62,7 +63,7 @@ a52620556937e43e5f91777458c866c4 *man/import_mhealth_csv.Rd
 40d386cee5777f343addfdfcd4395d87 *man/import_mhealth_csv_chunked.Rd
 82d7cd538b3b242010349a06031edc25 *man/interpolate_signal.Rd
 2c4eb80d805cc9076d2f444c07ad6e9e *man/measurements_different_devices.Rd
-9dc4eded5b67c5136241639836cf4de1 *man/mims_unit.Rd
+97d6acc4b5316e08e69ff2de3e838f7f *man/mims_unit.Rd
 04851cfe77ed2da0079b5809d524af0e *man/parse_epoch_string.Rd
 44c43ef400854460dfa8e9183feac3db *man/remove_average.Rd
 665852e95b83eaecf9b26fa6d678381f *man/rest_on_table.Rd
