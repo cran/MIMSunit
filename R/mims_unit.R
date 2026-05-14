@@ -72,7 +72,7 @@
 #' @export
 #' @examples
 #'   # Use sample data for testing
-#'   df = sample_raw_accel_data
+#'   df = head(sample_raw_accel_data, 240)
 #'
 #'   # compute mims unit values and output axial values
 #'   output = mims_unit(df, epoch = '1 sec', dynamic_range=c(-8, 8), output_mims_per_axis=TRUE)
@@ -161,12 +161,9 @@ mims_unit <-
 #' @export
 #' @examples
 #'   # Use sample data for testing
-#'   df = sample_raw_accel_data
+#'   df = head(sample_raw_accel_data, 240)
 #'
 #'   # compute sensor orientation angles
-#'   sensor_orientations(df, epoch = '2 sec', dynamic_range=c(-8, 8))
-#'
-#'   # compute sensor orientation angles with different epoch length
 #'   output = sensor_orientations(df, epoch = '1 sec', dynamic_range=c(-8, 8))
 #'   head(output)
 sensor_orientations <-
@@ -328,6 +325,7 @@ custom_mims_unit <-
            use_snapshot_to_check=FALSE) {
 
 
+    check_epoch(breaks = epoch)
     if (inherits(df, "tbl_df")) {
       df = as.data.frame(df)
     }
@@ -336,6 +334,7 @@ custom_mims_unit <-
       df = df[ order(first_col), ]
     }
     rm(first_col)
+    stopifnot("HEADER_TIME_STAMP" %in% colnames(df))
 
     # check timestamp duplication after the timestamp column is sorted
     if (use_snapshot_to_check) {
@@ -427,6 +426,7 @@ custom_mims_unit <-
 
     abnormal_data <- resampled_data[row_abnormal, ]
     normal_data <- resampled_data[!row_abnormal, ]
+    rm(row_abnormal)
 
     # Compute orientations
     if (output_orientation_estimation) {
@@ -579,15 +579,6 @@ custom_mims_unit <-
 #' @param ... additional parameters passed to the import function when reading
 #'   in the data from the files.
 #' @export
-#' @examples
-#'   # Use sample mhealth file for testing
-#'   filepaths = c(
-#'     system.file('extdata', 'mhealth.csv', package='MIMSunit')
-#'   )
-#'
-#'   # Test with multiple files
-#'   output = mims_unit_from_files(filepaths, epoch = "1 sec", dynamic_range = c(-8, 8))
-#'   head(output)
 mims_unit_from_files <-
   function(files,
            epoch = "5 sec",
